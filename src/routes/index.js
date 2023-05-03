@@ -9,12 +9,16 @@ const protectedRoute = [
 
 const unProtectedRoute = [
   {
-    path: "/",
+    path: "/home",
     component: Landing,
   },
   {
     path: "/not-auth",
     component: UnAuth,
+  },
+  {
+    path: "*",
+    component: Landing,
   },
 ];
 

@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout } from "antd";
 import { SideMenu, MainHeader } from "../";
-import { useOutlet } from "react-router-dom";
-
+import { useOutlet, useLocation, useNavigate } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 
 const MainLayout = () => {
   const outlet = useOutlet();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      navigate("/home");
+    }
+  }, [location, navigate]);
 
   return (
     <Layout style={{ height: "100vh" }}>

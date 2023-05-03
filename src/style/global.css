@@ -1,0 +1,15 @@
+.custom-button {
+  border-radius: 10px;
+}
+
+.custom-button-primary {
+  background-color: #e70a09;
+  font-weight: bold;
+  color: white;
+}
+
+.custom-button-primary:hover {
+  background-color: white !important;
+  color: #e70a09 !important;
+  border: 1px solid #e70a09;
+}

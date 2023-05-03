@@ -7,7 +7,7 @@ import { protectedRoute, unProtectedRoute } from "./routes";
 import { MainLayout, FreeLayout, AuthLayout } from "./components";
 
 const NotFoundPage = () => {
-  <h1>Error 404 not Founf</h1>;
+  <h1>Error 404 not Found</h1>;
 };
 
 export const router = createBrowserRouter(
