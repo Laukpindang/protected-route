@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useOutlet, useNavigate } from 'react-router-dom';
 import { Layout } from 'antd';
 import { SideMenu, MainHeader } from '..';
+import { Cookie } from '../../helper';
 
 const { Sider, Header, Content } = Layout;
 
@@ -10,7 +11,7 @@ const AuthenticatedLayout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = Cookie.getCookie('user');
 
     if (!user?.token) {
       navigate('/not-auth');

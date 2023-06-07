@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Form } from 'antd';
 import { CustomButton, CustomInput } from '../../components/shared';
 import { User } from '../../service';
+import { Cookie } from '../../helper';
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -25,11 +26,11 @@ const Landing = () => {
     dispatch(User.sendUser({ payload: payload }))
       .unwrap()
       .then(() => {
-        localStorage.setItem('user', JSON.stringify({ token: 'token' }));
+        Cookie.setCookie('user', { token: 'token' });
         navigate('/profile');
       })
       .catch(() => {
-        localStorage.setItem('user', JSON.stringify({ token: 'token' }));
+        Cookie.setCookie('user', { token: 'token' });
         navigate('/profile');
       });
   };
