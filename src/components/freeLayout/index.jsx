@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { Navigate, useOutlet } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Navigate, useOutlet } from 'react-router-dom';
 
 const FreeLayout = () => {
   const outlet = useOutlet();
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const user = localStorage.getItem('user');
     if (user?.token) {
       return <Navigate to="/profile" replace />;
     }

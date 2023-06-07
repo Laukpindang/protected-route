@@ -1,32 +1,28 @@
-import React, { useEffect } from "react";
-import { Layout } from "antd";
-import { SideMenu, MainHeader } from "../";
-import { useOutlet, useLocation, useNavigate } from "react-router-dom";
-const { Header, Sider, Content } = Layout;
+import React, { Suspense, useEffect } from 'react';
+import { useOutlet, useLocation, useNavigate, useLoaderData, Await } from 'react-router-dom';
+import { AuthProvider } from '../../hooks/useAuth';
 
 const MainLayout = () => {
   const outlet = useOutlet();
   const location = useLocation();
   const navigate = useNavigate();
 
+  const { userPromise } = useLoaderData();
+
   useEffect(() => {
-    if (location.pathname === "/") {
-      navigate("/home");
+    if (location.pathname === '/') {
+      navigate('/home');
     }
   }, [location, navigate]);
 
   return (
-    <Layout style={{ height: "100vh" }}>
-      <Sider style={{ backgroundColor: "grey" }}>
-        <SideMenu />
-      </Sider>
-      <Layout>
-        <Header style={{ backgroundColor: "red" }}>
-          <MainHeader />
-        </Header>
-        <Content style={{ padding: "10px" }}>{outlet}</Content>
-      </Layout>
-    </Layout>
+    <Suspense fallback={<div>loading...</div>}>
+      <Await
+        resolve={userPromise}
+        errorElement={() => alert('Something wrong')}
+        children={(user) => <AuthProvider userData={user}>{outlet}</AuthProvider>}
+      />
+    </Suspense>
   );
 };
 

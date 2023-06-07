@@ -1,12 +1,8 @@
-import React from "react";
+import React from 'react';
 
 const SideMenu = () => {
   return (
-    <div
-      style={{ display: "flex", justifyContent: "center", lineHeight: "64px" }}
-    >
-      Side Menu
-    </div>
+    <div style={{ display: 'flex', justifyContent: 'center', lineHeight: '64px' }}>Side Menu</div>
   );
 };
 

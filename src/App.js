@@ -2,17 +2,52 @@ import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
-} from "react-router-dom";
-import { protectedRoute, unProtectedRoute } from "./routes";
-import { MainLayout, FreeLayout, AuthLayout } from "./components";
+  useNavigate,
+  defer,
+} from 'react-router-dom';
+import { protectedRoute, unProtectedRoute } from './routes';
+import { MainLayout, FreeLayout, AuthLayout } from './components';
+import { Cookie } from './helper';
+import { Result, Button } from 'antd';
+
+const getUserData = () =>
+  new Promise((resolve) => {
+    const user = Cookie.getCookie('user');
+    if (!user?.token) {
+      // to enable animation
+      setTimeout(() => {
+        resolve(null);
+      }, 3000);
+    } else {
+      resolve(user);
+    }
+  });
 
 const NotFoundPage = () => {
-  <h1>Error 404 not Found</h1>;
+  const navigate = useNavigate();
+  const onClickBackHome = () => {
+    navigate('/');
+  };
+  return (
+    <Result
+      status="403"
+      title="403"
+      subTitle="Sorry, you are not authorized to access this page."
+      extra={
+        <Button type="primary" onClick={onClickBackHome}>
+          Back Home
+        </Button>
+      }
+    />
+  );
 };
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<MainLayout />} errorElement={<NotFoundPage />}>
+    <Route
+      element={<MainLayout />}
+      loader={async () => defer({ userPromise: getUserData() })}
+      errorElement={<NotFoundPage />}>
       <Route element={<FreeLayout />}>
         {unProtectedRoute.map((res, i) => (
           <Route key={i} path={res?.path} element={<res.component />} />

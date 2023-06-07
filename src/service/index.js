@@ -1,3 +1,3 @@
-import User from "./api/user";
+import User from './api/user';
 
 export { User };

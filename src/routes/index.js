@@ -1,23 +1,23 @@
-import { Landing, Profile, UnAuth } from "../screens";
+import { Landing, Profile, UnAuth } from '../screens';
 
 const protectedRoute = [
   {
-    path: "/profile",
+    path: '/profile',
     component: Profile,
   },
 ];
 
 const unProtectedRoute = [
   {
-    path: "/home",
+    path: '/home',
     component: Landing,
   },
   {
-    path: "/not-auth",
+    path: '/not-auth',
     component: UnAuth,
   },
   {
-    path: "*",
+    path: '*',
     component: Landing,
   },
 ];

@@ -1,14 +1,14 @@
-import React from "react";
-import { Button } from "antd";
+import React from 'react';
+import { Button } from 'antd';
 
 const CustomButton = ({
   id,
   children,
   disabled = false,
-  className = "",
-  type = "primary" | "secondary" | "link",
-  height = "48px",
-  htmlType = "button",
+  className = '',
+  type = 'primary' | 'secondary' | 'link',
+  height = '48px',
+  htmlType = 'button',
   style,
   onClick,
 }) => {
@@ -19,11 +19,8 @@ const CustomButton = ({
       onClick={onClick}
       type={type}
       htmlType={htmlType}
-      className={`custom-button custom-button-${
-        disabled ? "disabled" : type
-      } ${className} `}
-      style={{ height: height, ...style }}
-    >
+      className={`custom-button custom-button-${disabled ? 'disabled' : type} ${className} `}
+      style={{ height: height, ...style }}>
       {children}
     </Button>
   );
