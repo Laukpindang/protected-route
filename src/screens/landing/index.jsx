@@ -25,11 +25,12 @@ const Landing = () => {
     dispatch(User.sendUser({ payload: payload }))
       .unwrap()
       .then(() => {
-        localStorage.setItem('user', { token: 'token' });
+        localStorage.setItem('user', JSON.stringify({ token: 'token' }));
         navigate('/profile');
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        localStorage.setItem('user', JSON.stringify({ token: 'token' }));
+        navigate('/profile');
       });
   };
 

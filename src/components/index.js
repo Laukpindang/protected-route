@@ -1,7 +1,7 @@
 import MainHeader from './header';
 import SideMenu from './sidemenu';
 import MainLayout from './layout';
-import FreeLayout from './freeLayout';
-import AuthLayout from './authLayout';
+import AuthLayout from './AuthLayout';
+import AuthenticatedLayout from './AuthenticatedLayout';
 
-export { MainHeader, SideMenu, MainLayout, FreeLayout, AuthLayout };
+export { MainHeader, SideMenu, MainLayout, AuthLayout, AuthenticatedLayout };

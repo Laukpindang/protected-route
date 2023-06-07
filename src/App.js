@@ -6,7 +6,7 @@ import {
   defer,
 } from 'react-router-dom';
 import { protectedRoute, unProtectedRoute } from './routes';
-import { MainLayout, FreeLayout, AuthLayout } from './components';
+import { MainLayout, AuthenticatedLayout, AuthLayout } from './components';
 import { Cookie } from './helper';
 import { Result, Button } from 'antd';
 
@@ -48,13 +48,13 @@ export const router = createBrowserRouter(
       element={<MainLayout />}
       loader={async () => defer({ userPromise: getUserData() })}
       errorElement={<NotFoundPage />}>
-      <Route element={<FreeLayout />}>
+      <Route element={<AuthLayout />}>
         {unProtectedRoute.map((res, i) => (
           <Route key={i} path={res?.path} element={<res.component />} />
         ))}
       </Route>
 
-      <Route element={<AuthLayout />}>
+      <Route element={<AuthenticatedLayout />}>
         {protectedRoute.map((res, i) => (
           <Route key={i} path={res?.path} element={<res.component />} />
         ))}
